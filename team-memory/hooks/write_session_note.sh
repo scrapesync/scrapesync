@@ -92,7 +92,9 @@ PROMPT
 
 run_with_timeout() {
   local secs="$1"; shift
-  "$@" &
+  # <&0 is required: bash points a background job's stdin at /dev/null unless the
+  # redirection is explicit, which would hand the summariser an empty transcript.
+  "$@" <&0 &
   local pid=$! waited=0
   while kill -0 "$pid" 2>/dev/null; do
     [ "$waited" -ge "$secs" ] && { kill -9 "$pid" 2>/dev/null; wait "$pid" 2>/dev/null; return 124; }
