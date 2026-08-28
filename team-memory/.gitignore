@@ -1,0 +1,11 @@
+# Obsidian per-machine state -- never share these
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/cache
+.trash/
+
+# Hook runtime
+.tm-lock/
+*.tmp
+
+.DS_Store
