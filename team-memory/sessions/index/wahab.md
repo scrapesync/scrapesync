@@ -1,9 +1,9 @@
 ---
-person: faheem
+person: wahab
 type: index
 ---
 
-# faheem — session index
+# wahab — session index
 
 One line per session, newest at the bottom. Read this before opening individual notes.
 

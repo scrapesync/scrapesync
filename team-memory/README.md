@@ -39,7 +39,7 @@ did, readable both in Obsidian and by any Claude session.
    ```bash
    cp -r team-memory/. /path/to/team-memory-clone/
    cd /path/to/team-memory-clone
-   rm sessions/2026-08-27-1430-faheem-labeling.md sessions/index/faheem.md   # sample content
+   # index files for saad, asad, faheem, muneeb, muteeb and wahab are already there
    chmod +x setup.sh hooks/*.sh hooks/*.py
    git add . && git commit -m "Set up team memory vault" && git push
    ```
@@ -82,6 +82,7 @@ the hook refuses to commit unscrubbed text.
 ```
 sessions/2026-08-27-1430-faheem-labeling.md     one note per session
 sessions/index/faheem.md                        one line per session, per person
+sessions/index/{saad,asad,muneeb,muteeb,wahab}.md   one per person, pre-created
 ```
 
 Filenames are `YYYY-MM-DD-HHMM-person-topic.md`, so two people writing at the same
@@ -89,7 +90,7 @@ moment can never collide; a same-minute collision by one person gets a `-2` suff
 Each note opens with YAML frontmatter (`date`, `person`, `topic`, `repo`, `branch`,
 `summary`, `tags`), which makes it queryable from Obsidian's Dataview and readable
 by anything that parses frontmatter. See `templates/session-note.md` for the shape
-and `sessions/2026-08-27-1430-faheem-labeling.md` for a filled-in example.
+and `templates/example-session-note.md` for a filled-in example.
 
 Indexes are per person, deliberately. A single shared `INDEX.md` is the one file
 everybody would append to at once — the only guaranteed merge conflict in the
@@ -172,8 +173,9 @@ hooks/catch_up.sh            commit-and-sync for interrupted sessions
 hooks/extract_transcript.py  transcript .jsonl → digest + facts
 hooks/scrub_secrets.py       credential redaction (fail-closed)
 hooks/lib.sh                 config, logging, locking, git retry
-templates/                   note and index-line formats
-sessions/                    the vault itself (one sample note included)
+templates/                   note and index-line formats, plus a worked example
+sessions/                    the vault itself (empty; notes land here)
+sessions/index/              one index file per person, pre-created for the team
 .claude/settings.json.example  the hook config, if you'd rather wire it by hand
 ```
 
